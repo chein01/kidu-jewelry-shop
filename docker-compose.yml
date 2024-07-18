@@ -1,0 +1,39 @@
+
+services:
+  db:
+    container_name: kidudb
+    image: mariadb
+    restart: always
+    ports:
+      - 3307:3306
+    environment:
+      MARIADB_DATABASE: kidustore
+      # MARIADB_ROOT_PASSWORD: root
+      MARIADB_USER: admin
+      MARIADB_PASSWORD: admin
+    networks:
+      - kidustore
+    volumes:
+      - db_data:/var/lib/mysql
+
+
+  python:
+    container_name: kidubackend
+    build:
+      context: .
+    volumes:
+      - .:/app/code
+    command: python3 /app/code/manage.py runserver 0:8000
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    networks:
+      - kidustore
+  
+
+volumes:
+  db_data:
+
+networks:
+  kidustore:
