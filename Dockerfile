@@ -23,4 +23,6 @@ RUN pip install --upgrade pip && pip install -r requirements.txt
 
 COPY . /app/code/
 
+COPY nginx.conf /etc/nginx/nginx.conf
 EXPOSE 8000
+
