@@ -7,14 +7,12 @@ services:
     ports:
       - 3307:3306
     environment:
+      MARIADB_ROOT_PASSWORD: root
       MARIADB_DATABASE: kidustore
-      # MARIADB_ROOT_PASSWORD: root
       MARIADB_USER: admin
       MARIADB_PASSWORD: admin
-    networks:
-      - kidustore
     volumes:
-      - db_data:/var/lib/mysql
+      - mariadb_data:/var/lib/mysql
 
 
   python:
@@ -28,12 +26,8 @@ services:
       - "8000:8000"
     depends_on:
       - db
-    networks:
-      - kidustore
   
 
 volumes:
-  db_data:
+  mariadb_data:
 
-networks:
-  kidustore:

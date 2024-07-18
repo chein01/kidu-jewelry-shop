@@ -23,6 +23,4 @@ RUN pip install --upgrade pip && pip install -r requirements.txt
 
 COPY . /app/code/
 
-RUN chmod +x /app/code/mysql-init.sql
-
 EXPOSE 8000

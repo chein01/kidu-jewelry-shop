@@ -70,13 +70,14 @@ WSGI_APPLICATION = "jewelryshop.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.mysql",
-        "HOST": "db",
+        "HOST": 'db',
         "NAME": "kidustore",
         "USER": "admin",
         "PASSWORD": "admin",
-        "PORT": 3306,
+        "PORT": "3306",
         "OPTIONS": {
             "charset": "utf8mb4",
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES', innodb_strict_mode=1",
         },
     }
 }
