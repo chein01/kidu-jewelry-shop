@@ -142,3 +142,7 @@ GitHub.sublime-settings
 .history
 
 .DS_Store
+
+certbot/
+certbot/conf/
+certbot/www/
