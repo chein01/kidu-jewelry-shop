@@ -25,6 +25,8 @@ ALLOWED_HOSTS = [
     "localhost",
 ]
 
+CSRF_TRUSTED_ORIGINS = [os.getenv("HTTPS_DOMAIN")]
+
 
 # Application definition
 
