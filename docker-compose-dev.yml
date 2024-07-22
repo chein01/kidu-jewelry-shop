@@ -1,0 +1,37 @@
+# docker-compose.yml
+
+version: "3.9"  
+
+services:
+  db:
+    container_name: kidudb
+    image: mariadb
+    restart: always
+    ports:
+      - 3307:3306
+    environment:
+      MARIADB_ROOT_PASSWORD: root
+      MARIADB_DATABASE: kidustore
+      MARIADB_USER: admin
+      MARIADB_PASSWORD: admin
+    volumes:
+      - mariadb_data:/var/lib/mysql
+    
+
+  python:
+    container_name: kidubackend
+    restart: always
+    build:
+      context: .
+    volumes:
+      - .:/app/code
+    command:
+      - sh
+      - -c
+      - python manage.py migrate && python /app/code/manage.py runserver 0:8000
+    ports:
+      - "8000:8000"
+  
+
+volumes:
+  mariadb_data:
