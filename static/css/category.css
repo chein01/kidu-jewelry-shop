@@ -1,6 +1,0 @@
-.category-image {
-    width: 100%;
-    height: 490; /* Set the desired height */
-    object-fit: cover; /* Ensures the image fills the given dimensions while maintaining aspect ratio */
-    border-radius: 16px; /* Add border radius */
-}
