@@ -68,11 +68,12 @@ class Product(TimeBaseModel, StatusBaseModel):
     product_image = models.ImageField(
         upload_to="product", blank=True, null=True, verbose_name="Ảnh"
     )
-    price = models.DecimalField(max_digits=8, decimal_places=2)
+    price = models.IntegerField(default=0, verbose_name="Giá tiền")
     category = models.ForeignKey(
         Category, verbose_name="Danh mục sản phẩm", on_delete=models.CASCADE
     )
     view = models.IntegerField(default=0, verbose_name="Lượt xem sản phẩm")
+
     class Meta:
         verbose_name_plural = "Sản phẩm"
         ordering = ("-created_at",)
