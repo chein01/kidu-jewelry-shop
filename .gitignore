@@ -146,3 +146,5 @@ GitHub.sublime-settings
 certbot/
 certbot/conf/
 certbot/www/
+
+static/
