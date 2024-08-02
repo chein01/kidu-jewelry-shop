@@ -5,20 +5,22 @@
 <!-- Link to the external CSS file -->
 <link rel="stylesheet" href="{% static 'css/product.css' %}">
 <link rel="stylesheet" href="{% static 'css/category.css' %}">
+<link rel="stylesheet" href="{% static 'css/background.css' %}">
 
 <!-- HERO SECTION-->
-  <div class="container">
-      <section class="hero pb-3 bg-cover bg-center d-flex align-items-center" style="background: url({% static 'img/hero-jewlrey-banner.jpg' %})">
-          <div class="container py-5">
-              <div class="row px-4 px-lg-5">
-                  <div class="col-lg-6">
-                      <p class="text-muted small text-uppercase mb-2">New Inspiration 2024</p>
-                      <h1 class="h2 text-uppercase mb-3">Giảm giá 10% cho bộ sưu tập mới</h1>
-                      <a class="btn btn-dark" href="{% url 'store:all-categories' %}">Khám phá các bộ sưu tập</a>
-                  </div>
+<div class="container">
+    <section class="hero pb-3 d-flex align-items-center" style="background: url({% static 'img/hero-jewlrey-banner.jpg' %}) no-repeat center center; background-size: cover;">
+      <div class="container py-5">
+          <div class="row px-4 px-lg-5">
+              <div class="col-lg-6">
+                  <p class="text-muted small text-uppercase mb-2">New Inspiration 2024</p>
+                  <h1 class="h2 text-uppercase mb-3">Giảm giá 10% cho bộ sưu tập mới</h1>
+                  <a class="btn btn-dark" href="{% url 'store:all-categories' %}">Khám phá các bộ sưu tập</a>
               </div>
           </div>
-      </section>
+      </div>
+  </section>
+
 
     <!-- CATEGORIES SECTION-->
     <section class="pt-5">
@@ -30,13 +32,15 @@
             {% if categories %}
                 {% for category in categories %}
                     <div class="col-md-4 mb-4 mb-md-0">
-                        <a class="category-item" href="{% url 'store:category-products' category.slug %}">
-                            {% if category.category_image %}
-                                <img class="img-fluid category-image" src="{{ category.category_image.url }}" alt="{{ category.title }}">
-                            {% else %}
-                                <img class="img-fluid category-image" src="{% static 'img/cat-img-1.jpg' %}" alt="{{ category.title }}">
-                            {% endif %}
-                            <strong class="category-item-title">{{ category.title }}</strong>
+                        <a class="category-item d-block" href="{% url 'store:category-products' category.slug %}">
+                            <div class="category-image-container">
+                                {% if category.category_image %}
+                                    <img class="img-fluid category-image" src="{{ category.category_image.url }}" alt="{{ category.title }}">
+                                {% else %}
+                                    <img class="img-fluid category-image" src="{% static 'img/cat-img-1.jpg' %}" alt="{{ category.title }}">
+                                {% endif %}
+                            </div>
+                            <strong class="category-item-title d-block text-center mt-2">{{ category.title }}</strong>
                         </a>
                     </div>
                 {% endfor %}
@@ -44,56 +48,55 @@
         </div>
     </section>
 
-  <!-- TRENDING PRODUCTS-->
+    <!-- TRENDING PRODUCTS-->
     <section class="py-5">
-      <header>
-          <p class="small text-muted small text-uppercase mb-1">Trending products</p>
-          <h2 class="h5 text-uppercase mb-4">Sản phẩm được quan tâm hàng đầu</h2>
-      </header>
-      <div class="row">
-          {% if products %}
-              {% for product in products %}
-                  <!-- PRODUCT-->
-                  <div class="col-xl-3 col-lg-4 col-sm-6">
-                      <div class="product text-center">
-                          <div class="position-relative mb-3">
-                              <div class="badge text-white badge-"></div>
-                              <a class="d-block" href="{% url 'store:product-detail' product.slug %}">
-                                  <div class="product-image-container">
-                                      {% if product.product_image %}
-                                          <img class="img-fluid product-image" src="{{ product.product_image.url }}" alt="{{ product.title }}">
-                                      {% else %}
-                                          <img class="img-fluid product-image" src="{% static 'img/product-1.jpg' %}" alt="{{ product.title }}">
-                                      {% endif %}
-                                  </div>
-                              </a>
-                              <div class="product-overlay">
-                                  <ul class="mb-0 list-inline">
-                                      <li class="list-inline-item m-0 p-0">
-                                          <a class="btn btn-sm btn-outline-dark" href="#">
-                                              <i class="far fa-heart"></i>
-                                          </a>
-                                      </li>
-                                      <li class="list-inline-item m-0 p-0">
-                                          <form action="{% url 'store:add-to-cart' %}">
-                                              <input type="hidden" name="prod_id" value="{{product.id}}" id="product_id">
-                                              <button type="submit" class="btn btn-sm btn-dark">Thêm giỏ hàng</button>
-                                          </form>
-                                      </li>
-                                  </ul>
-                              </div>
-                          </div>
-                          <h6>
-                              <a class="reset-anchor" href="{% url 'store:product-detail' product.slug %}">{{ product.title }}</a>
-                          </h6>
-                          <p class="small text-muted">{{ product.price }} VND</p>
-                      </div>
-                  </div>
-              {% endfor %}
-          {% endif %}
-      </div>
+        <header>
+            <p class="small text-muted small text-uppercase mb-1">Trending products</p>
+            <h2 class="h5 text-uppercase mb-4">Sản phẩm được quan tâm hàng đầu</h2>
+        </header>
+        <div class="row">
+            {% if products %}
+                {% for product in products %}
+                    <!-- PRODUCT-->
+                    <div class="col-xl-3 col-lg-4 col-sm-6">
+                        <div class="product text-center">
+                            <div class="position-relative mb-3">
+                                <div class="badge text-white badge-"></div>
+                                <a class="d-block" href="{% url 'store:product-detail' product.slug %}">
+                                    <div class="product-image-container">
+                                        {% if product.product_image %}
+                                            <img class="img-fluid product-image" src="{{ product.product_image.url }}" alt="{{ product.title }}">
+                                        {% else %}
+                                            <img class="img-fluid product-image" src="{% static 'img/product-1.jpg' %}" alt="{{ product.title }}">
+                                        {% endif %}
+                                    </div>
+                                </a>
+                                <div class="product-overlay">
+                                    <ul class="mb-0 list-inline">
+                                        <li class="list-inline-item m-0 p-0">
+                                            <a class="btn btn-sm btn-outline-dark" href="#">
+                                                <i class="far fa-heart"></i>
+                                            </a>
+                                        </li>
+                                        <li class="list-inline-item m-0 p-0">
+                                            <form action="{% url 'store:add-to-cart' %}">
+                                                <input type="hidden" name="prod_id" value="{{ product.id }}" id="product_id">
+                                                <button type="submit" class="btn btn-sm btn-dark">Thêm giỏ hàng</button>
+                                            </form>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <h6>
+                                <a class="reset-anchor" href="{% url 'store:product-detail' product.slug %}">{{ product.title }}</a>
+                            </h6>
+                            <p class="small text-muted">{{ product.price }} VND</p>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
     </section>
-
 
     <!-- SERVICES-->
     <section class="py-5 bg-light">
@@ -120,7 +123,7 @@
                             </svg>
                             <div class="media-body text-left ml-3">
                                 <h6 class="text-uppercase mb-1">24 x 7 service</h6>
-                                <p class="text-small mb-0 text-muted">Free shipping worldwide</p>
+                                <p class="text-small mb-0 text-muted">24/7 customer support</p>
                             </div>
                         </div>
                     </div>
@@ -133,7 +136,7 @@
                             </svg>
                             <div class="media-body text-left ml-3">
                                 <h6 class="text-uppercase mb-1">Festival offer</h6>
-                                <p class="text-small mb-0 text-muted">Free shipping worldwide</p>
+                                <p class="text-small mb-0 text-muted">Special discounts for festivals</p>
                             </div>
                         </div>
                     </div>
@@ -148,7 +151,7 @@
             <div class="row">
                 <div class="col-lg-6 mb-3 mb-lg-0">
                     <h5 class="text-uppercase">Let's be friends!</h5>
-                    <p class="text-small text-muted mb-0">Nisi nisi tempor consequat laboris nisi.</p>
+                    <p class="text-small text-muted mb-0">Stay updated with our latest news and offers.</p>
                 </div>
                 <div class="col-lg-6">
                     <form action="#">
@@ -164,5 +167,4 @@
         </div>
     </section>
 </div>
-
-{% endblock content %}
+{% endblock %}

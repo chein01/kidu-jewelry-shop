@@ -1,7 +1,7 @@
 .product-image-container {
     position: relative;
     width: 100%;
-    padding-top: 100%; /* Adjust according to the aspect ratio (e.g., 75% for 4:3) */
+    padding-top: 110%; /* Adjust according to the aspect ratio (e.g., 75% for 4:3) */
     overflow: hidden;
     border-radius: 16px;
 }
