@@ -229,3 +229,7 @@ def shop(request):
 
 def test(request):
     return render(request, "store/test.html")
+
+
+def contact_info(request):
+    return render(request, "contact.html")

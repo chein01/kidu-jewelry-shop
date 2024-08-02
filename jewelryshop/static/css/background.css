@@ -1,0 +1,5 @@
+.hero {
+    position: relative;
+    overflow: hidden; /* Ensures the border-radius effect is visible */
+    border-radius: 16px; /* Adjust the border-radius as needed */
+}

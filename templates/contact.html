@@ -1,0 +1,109 @@
+{% load static %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang sức phụ kiện | Kidu</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+        .container {
+            display: flex;
+            flex: 1;
+            overflow: hidden;
+            height: 100%;
+        }
+        .form-section, .image-section {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .form-section {
+            background-color: white;
+            flex: 1;
+            min-height: 100vh;
+            position: relative; /* Added for logo positioning */
+            text-align: center; /* Center content */
+        }
+        .image-section {
+            background-image: url({% static 'img/contact.jpg' %});
+            background-size: cover;
+            background-position: center;
+        }
+        h1 {
+            margin: 20px 0;
+        }
+        .contact-info {
+            margin-bottom: 20px;
+            color: #666;
+            font-size: 0.9em;
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Center content */
+        }
+        .social-links {
+            margin-top: 20px;
+            font-size: 0.9em;
+        }
+        .social-links a {
+            color: #666;
+            text-decoration: none;
+            margin-right: 10px;
+            font-size: 24px; /* Adjust the size as needed */
+        }
+        .social-links a:hover {
+            color: #333; /* Change color on hover if desired */
+        }
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+            .image-section {
+                min-height: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="form-section">
+            <div>
+                <h1>Liên hệ với chúng tôi</h1>
+                <p>Chúng tôi luôn sẵn sàng lắng nghe mọi đề xuất của bạn</p>
+                <div class="contact-info">
+                    <p>ADDRESS: Phường Thọ Xương, Thành phố Bắc Giang</p>
+                    <p>EMAIL: kimdung69@gmail.com</p>
+                    <p>PHONE: 0971655880</p>
+                </div>
+                <div class="social-links">
+                    <p>Follow us here</p>
+                    <a href="https://www.facebook.com/profile.php?id=100004433808839" target="_blank" title="Facebook">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="#" title="Twitter">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" title="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="image-section"></div>
+    </div>
+</body>
+</html>
+{% endblock %}
