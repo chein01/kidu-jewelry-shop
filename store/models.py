@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils.text import slugify
 
 # Create your models here.
 STATUS_CHOICES = (
@@ -59,7 +60,7 @@ class Category(TimeBaseModel, StatusBaseModel):
 
 class Product(TimeBaseModel, StatusBaseModel):
     title = models.CharField(max_length=150, verbose_name="Tiêu đề")
-    slug = models.SlugField(max_length=160, verbose_name="Slug")
+    slug = models.CharField(max_length=160, verbose_name="Slug", editable=False)
     sku = models.CharField(max_length=255, unique=True, verbose_name="SKU")
     short_description = models.TextField(verbose_name="Mô tả ngắn gọn")
     detail_description = models.TextField(
@@ -80,6 +81,11 @@ class Product(TimeBaseModel, StatusBaseModel):
 
     def __str__(self):
         return self.title
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = f"{slugify(self.title)}-{self.id}"
+        super(Product, self).save(*args, **kwargs)
 
 
 class Cart(TimeBaseModel):
