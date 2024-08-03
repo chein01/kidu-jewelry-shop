@@ -26,6 +26,8 @@ def home(request):
 
 def detail(request, slug):
     product = get_object_or_404(Product, slug=slug)
+    product.view += 1
+    product.save()
     related_products = (
         Product.objects.exclude(id=product.id)
         .filter(is_active=True, category=product.category)

@@ -19,11 +19,11 @@ class CategoryAdmin(admin.ModelAdmin):
         "is_featured",
         "updated_at",
     )
-    list_editable = ("slug", "is_active", "is_featured")
+    list_editable = ("is_active", "is_featured")
     list_filter = ("is_active", "is_featured")
     list_per_page = 10
     search_fields = ("title", "description")
-    prepopulated_fields = {"slug": ("title",)}
+    readonly_fields = ["slug"]
 
 
 class ProductAdmin(admin.ModelAdmin):
@@ -40,6 +40,7 @@ class ProductAdmin(admin.ModelAdmin):
     list_filter = ("category", "is_active", "is_featured")
     list_per_page = 10
     search_fields = ("title", "category", "short_description")
+    readonly_fields = ["slug"]
 
 
 class CartAdmin(admin.ModelAdmin):

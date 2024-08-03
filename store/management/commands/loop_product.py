@@ -2,7 +2,7 @@
 
 from django.core.management.base import BaseCommand
 from django.utils.text import slugify
-from store.models import Product
+from store.models import Product, Category
 
 
 class Command(BaseCommand):
@@ -12,3 +12,6 @@ class Command(BaseCommand):
         products = Product.objects.all()
         for product in products:
             product.save()
+        categories = Category.objects.all()
+        for category in categories:
+            category.save()

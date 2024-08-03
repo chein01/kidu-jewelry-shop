@@ -22,6 +22,7 @@
             flex: 1;
             overflow: hidden;
             height: 100%;
+            position: relative;
         }
         .form-section, .image-section {
             flex: 1;
@@ -35,16 +36,47 @@
             background-color: white;
             flex: 1;
             min-height: 100vh;
-            position: relative; /* Added for logo positioning */
-            text-align: center; /* Center content */
+            position: relative;
+            text-align: center;
+            padding-top: 100px;
         }
         .image-section {
             background-image: url({% static 'img/contact.jpg' %});
             background-size: cover;
             background-position: center;
         }
+        .header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: white;
+            text-align: center;
+            padding: 10px 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            z-index: 1;
+        }
+        .header a {
+            font-weight: bold;
+            font-size: 24px;
+            color: black;
+            text-decoration: none;
+            padding: 0 20px;
+            border: none;
+            outline: none;
+        }
+        .logo {
+            width: 100px;
+            margin-bottom: 20px;
+            background-image: url({% static 'css/log.png' %});
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            height: 100px;
+            display: inline-block;
+        }
         h1 {
-            margin: 20px 0;
+            margin-top: 0;
         }
         .contact-info {
             margin-bottom: 20px;
@@ -52,7 +84,7 @@
             font-size: 0.9em;
             display: flex;
             flex-direction: column;
-            align-items: center; /* Center content */
+            align-items: center;
         }
         .social-links {
             margin-top: 20px;
@@ -62,10 +94,10 @@
             color: #666;
             text-decoration: none;
             margin-right: 10px;
-            font-size: 24px; /* Adjust the size as needed */
+            font-size: 24px;
         }
         .social-links a:hover {
-            color: #333; /* Change color on hover if desired */
+            color: #333;
         }
         @media (max-width: 768px) {
             .container {
@@ -79,8 +111,12 @@
 </head>
 <body>
     <div class="container">
+        <div class="header">
+            <a href="{% url 'store:home' %}">JEWELRY</a>
+        </div>
         <div class="form-section">
             <div>
+                <div class="logo"></div>
                 <h1>Liên hệ với chúng tôi</h1>
                 <p>Chúng tôi luôn sẵn sàng lắng nghe mọi đề xuất của bạn</p>
                 <div class="contact-info">

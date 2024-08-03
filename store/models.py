@@ -44,7 +44,7 @@ class Address(models.Model):
 
 class Category(TimeBaseModel, StatusBaseModel):
     title = models.CharField(max_length=50, verbose_name="Tiêu đề")
-    slug = models.SlugField(max_length=55, verbose_name="Slug")
+    slug = models.SlugField(max_length=55, verbose_name="Slug", editable=False)
     description = models.TextField(blank=True, verbose_name="Mô tả")
     category_image = models.ImageField(
         upload_to="category", blank=True, null=True, verbose_name="Ảnh"
@@ -56,6 +56,11 @@ class Category(TimeBaseModel, StatusBaseModel):
 
     def __str__(self):
         return self.title
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = f"{slugify(self.title)}-{self.id}"
+        super(Category, self).save(*args, **kwargs)
 
 
 class Product(TimeBaseModel, StatusBaseModel):
