@@ -44,7 +44,9 @@ class Address(models.Model):
 
 class Category(TimeBaseModel, StatusBaseModel):
     title = models.CharField(max_length=50, verbose_name="Tiêu đề")
-    slug = models.SlugField(max_length=55, verbose_name="Slug", editable=False)
+    slug = models.SlugField(
+        max_length=55, verbose_name="Slug", editable=False, unique=True
+    )
     description = models.TextField(blank=True, verbose_name="Mô tả")
     category_image = models.ImageField(
         upload_to="category", blank=True, null=True, verbose_name="Ảnh"

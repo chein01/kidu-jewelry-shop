@@ -1,50 +1,5 @@
-/* General styles for the hero section */
 .hero {
     position: relative;
     overflow: hidden; /* Ensures the border-radius effect is visible */
     border-radius: 16px; /* Adjust the border-radius as needed */
-    background: url('../img/hero-jewlrey-banner.jpg') no-repeat center center;
-    background-size: cover;
-    height: 100vh; /* Full height */
-    display: flex;
-    align-items: center;
-}
-
-/* Responsive styles for different screen sizes */
-@media (max-width: 768px) {
-    .hero {
-        background-position: center;
-        background-size: cover;
-        height: auto; /* Adjust height for smaller screens */
-        padding: 20px;
-    }
-    .hero .container {
-        padding: 20px;
-    }
-    .hero .row {
-        text-align: center;
-    }
-    .hero .col-lg-6 {
-        margin: 0 auto;
-    }
-}
-
-@media (min-width: 769px) and (max-width: 1200px) {
-    .hero {
-        background-position: center;
-        background-size: cover;
-        height: 70vh; /* Adjust height for medium screens */
-    }
-}
-
-@media (min-width: 1201px) {
-    .hero {
-        background-position: center;
-        background-size: cover;
-    }
-}
-
-/* Container styles */
-.container {
-    width: 100%;
 }
