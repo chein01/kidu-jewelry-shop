@@ -10,6 +10,10 @@ class AddressAdmin(admin.ModelAdmin):
     search_fields = ("locality", "city", "state")
 
 
+class ProductInline(admin.TabularInline):
+    model = Product
+
+
 class CategoryAdmin(admin.ModelAdmin):
     list_display = (
         "title",
@@ -24,6 +28,7 @@ class CategoryAdmin(admin.ModelAdmin):
     list_per_page = 10
     search_fields = ("title", "description")
     readonly_fields = ["slug"]
+    inlines = [ProductInline]
 
 
 class ProductAdmin(admin.ModelAdmin):
