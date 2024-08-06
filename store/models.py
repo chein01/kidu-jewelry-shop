@@ -61,13 +61,15 @@ class Category(TimeBaseModel, StatusBaseModel):
 
     def save(self, *args, **kwargs):
         if not self.slug:
-            self.slug = f"{slugify(self.title)}-{self.id}"
+            self.slug = slugify(self.title)
         super(Category, self).save(*args, **kwargs)
 
 
 class Product(TimeBaseModel, StatusBaseModel):
     title = models.CharField(max_length=150, verbose_name="Tiêu đề")
-    slug = models.CharField(max_length=160, verbose_name="Slug", editable=False)
+    slug = models.CharField(
+        max_length=160, verbose_name="Slug", editable=False, unique=True
+    )
     sku = models.CharField(max_length=255, unique=True, verbose_name="SKU")
     short_description = models.TextField(verbose_name="Mô tả ngắn gọn")
     detail_description = models.TextField(
@@ -91,7 +93,7 @@ class Product(TimeBaseModel, StatusBaseModel):
 
     def save(self, *args, **kwargs):
         if not self.slug:
-            self.slug = f"{slugify(self.title)}-{self.id}"
+            self.slug = slugify(self.title)
         super(Product, self).save(*args, **kwargs)
 
 
